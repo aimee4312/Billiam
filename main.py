@@ -1,9 +1,11 @@
 import discord
 import requests
 import json
+from config import TOKEN
 
 intents = discord.Intents.all() 
 client = discord.Client(command_prefix='!', intents=intents)
+sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
 
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -25,4 +27,4 @@ async def on_message(message):
         await message.channel.send(quote)
 
     
-client.run("MTE2MDc4MjcyNzg5Mzc0NTY3NA.GNkR9y.FeaUhFMhKh0iFuG5igvNwjkzeToscN4nfTjayw")
+client.run(TOKEN)
