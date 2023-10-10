@@ -1,6 +1,6 @@
 # Billiam #
 
-A Discord bot for movie recommendations, implementing randomization and list management for watched and unwatched films.
+Billiam is your personal movie and show assistant on Discord, designed to make managing your watchlist a breeze. With a set of simple slash commands, Billiam helps you effortlessly organize, discover, and enjoy your favorite entertainment.
 
 | Slash Command     | Description                       |
 | ----------------- | --------------------------------- |
