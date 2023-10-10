@@ -159,6 +159,44 @@ async def unviewed_shows(ctx):
         shows_list = "\n".join([f"{i + 1}. {show['name']}" for i, show in enumerate(unwatched_shows)])
         await ctx.respond("List of Unwatched Shows:\n" + shows_list)
 
+# /remove-movie
+@slash_command(
+    name="remove-movie",
+    description="Remove a movie from the list",
+    options=[
+        {
+            "name": "movie",
+            "description": "The name of the movie",
+            "type": 3,
+            "required": True,
+        }
+    ]
+)
+async def remove_movie(ctx, movie: str):
+    collection = db['Movies']
+
+    collection.delete_one({"name": movie})
+    await ctx.respond(f"Removed '{movie}' from the movie list.")
+
+# /remove-show
+@slash_command(
+    name="remove-show",
+    description="Remove a show from the list",
+    options=[
+        {
+            "name": "show",
+            "description": "The name of the show",
+            "type": 3,
+            "required": True,
+        }
+    ]
+)
+async def remove_show(ctx, show: str):
+    collection = db['Shows']
+
+    collection.delete_one(show)
+    await ctx.respond(f"Removed '{show}' from the show list.")
+
 @billiam.event
 async def on_message(message):
     if message.author == billiam.user:
