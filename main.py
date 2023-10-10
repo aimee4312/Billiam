@@ -28,13 +28,17 @@ async def on_ready():
 )
 async def add_movie(ctx, movie: str):
     collection = db['Movies']
-
-    movie_document = {
-        "name": movie,
-        "watched": False
-    }
-    collection.insert_one(movie_document)
-    await ctx.respond(f"Added '{movie}' to the movie list.")
+    existing_movie = collection.find_one({"name": movie})
+    
+    if existing_movie:
+        print(f"Movie '{movie}' already exists in the collection.")
+    else:
+        movie_document = {
+            "name": movie,
+            "watched": False
+        }
+        collection.insert_one(movie_document)
+        await ctx.respond(f"Added '{movie}' to the movie list.")
 
 # /add-show
 @slash_command(
@@ -51,13 +55,17 @@ async def add_movie(ctx, movie: str):
 )
 async def add_show(ctx, show: str):
     collection = db['Shows']
-
-    show_document = {
-        "name": show,
-        "watched": False
-    }
-    collection.insert_one(show_document)
-    await ctx.respond(f"Added '{show}' to the show list.")
+    existing_show = collection.find_one({"name": show})
+    
+    if existing_show:
+        print(f"Show '{show}' already exists in the collection.")
+    else:
+        show_document = {
+            "name": show,
+            "watched": False
+        }
+        collection.insert_one(show_document)
+        await ctx.respond(f"Added '{show}' to the show list.")
 
 # /get-movie
 @slash_command(
